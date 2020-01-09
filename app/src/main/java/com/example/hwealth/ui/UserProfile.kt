@@ -37,7 +37,9 @@ class UserProfile : AppCompatActivity() {
     private var imagecam: Uri? = null
 
     private var name: TextView? = null
+    private var nn: EditText? = null
     private var stepgoal: TextView? = null
+    private var ssgg: EditText? = null
     private var b: TextView? = null
     private var gender: EditText? = null
     private var birthday: EditText? = null
@@ -70,6 +72,8 @@ class UserProfile : AppCompatActivity() {
         mStorageReference = mStorage!!.reference
         name = findViewById<View>(R.id.editText3) as TextView
         stepgoal = findViewById<View>(R.id.editText11) as TextView
+        nn = findViewById<View>(R.id.editText3) as EditText
+        ssgg = findViewById<View>(R.id.editText11) as EditText
         birthday = findViewById<View>(R.id.editText10) as EditText
         selectphotobtn = findViewById<View>(R.id.button6) as Button
         profilepicture = findViewById<View>(R.id.imageView) as ImageView
@@ -78,8 +82,10 @@ class UserProfile : AppCompatActivity() {
         b = findViewById<View>(R.id.editText10) as TextView
         logoutbtn = findViewById<View>(R.id.button3) as Button
         val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
+            override fun onDateSet(
+                view: DatePicker, year: Int, monthOfYear: Int,
+                dayOfMonth: Int
+            ) {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -88,30 +94,15 @@ class UserProfile : AppCompatActivity() {
         }
         birthday!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                DatePickerDialog(this@UserProfile, android.R.style.Theme_Holo_Light_Dialog, dateSetListener,
-                    cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
+                DatePickerDialog(
+                    this@UserProfile, android.R.style.Theme_Holo_Light_Dialog, dateSetListener,
+                    cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)
+                ).show()
             }
         })
         selectphotobtn!!.setOnClickListener { showPictureDialog() }
-        gender!!.setOnClickListener{ showGenderDialog() }
+        gender!!.setOnClickListener { showGenderDialog() }
         logoutbtn!!.setOnClickListener { logout() }
-
-        name!!.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val imm: InputMethodManager =
-                    v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(v.windowToken, 0)
-                n = name?.text.toString()
-                sg = stepgoal?.text.toString()
-                val userId = mAuth!!.currentUser!!.uid
-                val currentUserDb = mDatabaseReference!!.child(userId)
-                currentUserDb.child("weight").setValue(n)
-                currentUserDb.child("height").setValue(sg)
-                true
-            } else {
-                false
-            }
-        }
 
     }
 

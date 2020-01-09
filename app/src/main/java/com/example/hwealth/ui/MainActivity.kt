@@ -29,11 +29,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        //@Suppress("UNUSED_VARIABLE")
-        //val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-
-
     }
 
 }

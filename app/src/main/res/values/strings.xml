@@ -59,14 +59,14 @@
 
     <string-array name="numbers">
         <item>5000</item>
-        <item>6000</item>
-        <item>7000</item>
-        <item>8000</item>
-        <item>9000</item>
         <item>10000</item>
+        <item>15000</item>
         <item>20000</item>
+        <item>25000</item>
         <item>30000</item>
+        <item>35000</item>
         <item>40000</item>
+        <item>45000</item>
         <item>50000</item>
     </string-array>
 </resources>

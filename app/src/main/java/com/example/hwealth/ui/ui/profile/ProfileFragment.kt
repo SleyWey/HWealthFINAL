@@ -2,6 +2,7 @@ package com.example.hwealth.ui.ui.profile
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -10,6 +11,8 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -39,6 +42,7 @@ class ProfileFragment : Fragment() {
     private var imagecam: Uri? = null
 
     private var name: TextView? = null
+    private var n: EditText? = null
     private var birthday: EditText? = null
     private var b: TextView? = null
     private var gender: EditText? = null
@@ -55,10 +59,9 @@ class ProfileFragment : Fragment() {
     private var genderg: String? = null
     private var birthdayb: String? = null
 
-    private var imagei: String? = null
     private var propic: String? = null
-    private var cam: String? = null
-    val TAG = "UserProfile"
+    private var ssgg: String? = null
+    private var nn: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,6 +77,7 @@ class ProfileFragment : Fragment() {
         mStorage = FirebaseStorage.getInstance()
         mStorageReference = mStorage!!.reference
         name = root.findViewById<View>(R.id.editText3) as TextView
+        n = root.findViewById<View>(R.id.editText3) as EditText
         b = root.findViewById<View>(R.id.editText10) as TextView
         birthday = root.findViewById<View>(R.id.editText10) as EditText
         selectphotobtn = root.findViewById<View>(R.id.button6) as Button
@@ -84,9 +88,13 @@ class ProfileFragment : Fragment() {
         stepgoal = root.findViewById<View>(R.id.editText11) as EditText
         sg = root.findViewById<View>(R.id.editText11) as TextView
 
+        selectphotobtn!!.setOnClickListener { showPictureDialog() }
+        gender!!.setOnClickListener{ showGenderDialog() }
+        logoutbtn!!.setOnClickListener { logout() }
+        stepgoal!!.setOnClickListener{ showStepGoalDialog() }
+
         val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
-                                   dayOfMonth: Int) {
+            override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int) {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -99,16 +107,27 @@ class ProfileFragment : Fragment() {
                     cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
             }
         })
-        selectphotobtn!!.setOnClickListener { showPictureDialog() }
-        gender!!.setOnClickListener{ showGenderDialog() }
-        logoutbtn!!.setOnClickListener { logout() }
+
+        n!!.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                val imm: InputMethodManager =
+                    v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                nn = n?.text.toString()
+                val userId = mAuth!!.currentUser!!.uid
+                val currentUserDb = mDatabaseReference!!.child(userId)
+                currentUserDb.child("name").setValue(nn)
+                true
+            } else {
+                false
+            }
+        }
         return root
     }
 
     private fun showGenderDialog(){
         val listItems = arrayOf("Male", "Female", "Others")
         val mBuilder = AlertDialog.Builder(context)
-        //mBuilder.setTitle("Select Gender")
         mBuilder.setSingleChoiceItems(listItems, -1) { dialogInterface, i ->
             g!!.text = listItems[i]
         }
@@ -121,8 +140,7 @@ class ProfileFragment : Fragment() {
             val userId = mAuth!!.currentUser!!.uid
             val currentUserDb = mDatabaseReference!!.child(userId)
             currentUserDb.child("gender").setValue(genderg)
-            //Toast.makeText(this@UserProfile, "Gender update successfully.",
-                //Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Gender update successfully.", Toast.LENGTH_SHORT).show()
         }
         val mDialog = mBuilder.create()
         mDialog.show()
@@ -146,7 +164,6 @@ class ProfileFragment : Fragment() {
         val galleryIntent = Intent(
             Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        //galleryIntent.setType("image/*")
         startActivityForResult(galleryIntent, GALLERY)
     }
 
@@ -155,7 +172,7 @@ class ProfileFragment : Fragment() {
         startActivityForResult(intent, CAMERA)
     }
 
-    public override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
+    override fun onActivityResult(requestCode:Int, resultCode:Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY)
         {
@@ -167,13 +184,13 @@ class ProfileFragment : Fragment() {
                     val bitmap = MediaStore.Images.Media.getBitmap(activity!!.contentResolver, imagepath)
 
                     profilepicture!!.setImageBitmap(bitmap)
-                    //Toast.makeText(this@UserProfile, "Profile Picture update successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Profile Picture update successfully!", Toast.LENGTH_SHORT).show()
                     selectphotobtn!!.alpha = 0f
                     uploadImage(bitmap)
                 }
                 catch (e: IOException) {
                     e.printStackTrace()
-                    //Toast.makeText(this@UserProfile, "Failed!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Failed to Upload!", Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -181,7 +198,7 @@ class ProfileFragment : Fragment() {
         if (requestCode == CAMERA){
             val thumbnail = data!!.extras!!.get("data") as Bitmap
             profilepicture!!.setImageBitmap(thumbnail)
-            //Toast.makeText(this@UserProfile, "Profile Picture update successfully!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Profile Picture update successfully!", Toast.LENGTH_SHORT).show()
             selectphotobtn!!.alpha = 0f
             uploadCamImage(thumbnail)
         }
@@ -214,17 +231,6 @@ class ProfileFragment : Fragment() {
 
     private fun uploadImage(bitmap: Bitmap) {
         if (imagepath != null) {
-            /*val filename = UUID.randomUUID().toString()
-            //val imageref = mStorageReference!!.child("/images/" + filename)
-            val imageref = FirebaseStorage.getInstance().getReference("/images/" + filename)
-            imageref.putFile(imagepath!!)
-                .addOnSuccessListener {
-                    imageref.downloadUrl.addOnSuccessListener {
-                        val userId = mAuth!!.currentUser!!.uid
-                        val currentUserDb = mDatabaseReference!!.child(userId)
-                        currentUserDb.child("image").setValue(it.toString())
-                    }
-                }*/
             val filename = UUID.randomUUID().toString()
             val baos = ByteArrayOutputStream()
             val camref = FirebaseStorage.getInstance()
@@ -284,9 +290,40 @@ class ProfileFragment : Fragment() {
 
     }
 
+    private fun showStepGoalDialog(){
+        val listItems = arrayOf("5000", "10000", "15000" , "20000", "25000", "30000","35000", "40000","45000","50000")
+        val mBuilder = AlertDialog.Builder(context)
+        mBuilder.setSingleChoiceItems(listItems, -1) { dialogInterface, i ->
+            sg!!.text = listItems[i]
+        }
+        mBuilder.setNeutralButton("Cancel") { dialog, which ->
+            dialog.cancel()
+        }
+        mBuilder.setPositiveButton("OK") {dialog, which ->
+            ssgg = stepgoal?.text.toString()
+            val userId = mAuth!!.currentUser!!.uid
+            val currentUserDb = mDatabaseReference!!.child(userId)
+            currentUserDb.child("stepgoal").setValue(ssgg)
+            Toast.makeText(context, "Step Goals update successfully.", Toast.LENGTH_SHORT).show()
+        }
+        val mDialog = mBuilder.create()
+        mDialog.show()
+    }
+
     private fun logout() {
-        mAuth!!.signOut()
-        val intent = Intent(activity, MainActivity::class.java)
-        startActivity(intent)
+        val mBuilder = AlertDialog.Builder(context)
+        mBuilder.setTitle("LOGOUT")
+        mBuilder.setMessage("Are you sure you want to Log Out ?")
+        mBuilder.setNeutralButton("Cancel") { dialog, which ->
+            dialog.cancel()
+        }
+        mBuilder.setPositiveButton("YES") {dialog, which ->
+            Toast.makeText(context,"OK, Goodbye.",Toast.LENGTH_SHORT).show()
+            mAuth!!.signOut()
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val mDialog = mBuilder.create()
+        mDialog.show()
     }
 }

@@ -136,12 +136,15 @@
         android:layout_width="@dimen/d1"
         android:layout_height="@dimen/d3"
         android:layout_marginTop="24dp"
+        android:cursorVisible="false"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:inputType="number"
+        android:textAlignment="viewEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
-        android:textAlignment="viewEnd"/>
+        app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
     <TextView
         android:id="@+id/textView38"

@@ -36,15 +36,18 @@ class StepsFragment : Fragment(), SensorEventListener {
     private var caloriestv: TextView? = null
     private var timetv: TextView? = null
     private var sg: TextView? = null
-    private var getsg: TextView? = null
+    private var sg2: TextView? = null
+    private var h:TextView? = null
+    private var geth: EditText? = null
+    private var getsg: EditText? = null
+
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
     private var mStorage: FirebaseStorage? = null
     private var mStorageReference: StorageReference? = null
 
-    private var h:TextView? = null
-    private var geth: EditText? = null
+
     private val convertkm = 1.60934
     private val convertcal = 55
     private val convertinch = 2.54
@@ -69,7 +72,8 @@ class StepsFragment : Fragment(), SensorEventListener {
         h = root.findViewById<View>(R.id.textView35) as TextView
         geth = root.findViewById<View>(R.id.textView35) as EditText
         sg = root.findViewById<View>(R.id.spinner) as TextView
-        getsg = root.findViewById<View>(R.id.spinner) as TextView
+        sg2 = root.findViewById<View>(R.id.editText7) as TextView
+        getsg = root.findViewById<View>(R.id.editText7) as EditText
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
@@ -77,8 +81,7 @@ class StepsFragment : Fragment(), SensorEventListener {
         mStorageReference = mStorage!!.reference
         val date_n: String = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date())
         dateTv!!.setText(date_n)
-        val stepgoal = resources.getStringArray(R.array.numbers)
-                return root
+        return root
     }
 
     override fun onStart() {
@@ -88,8 +91,9 @@ class StepsFragment : Fragment(), SensorEventListener {
         mUserReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 h!!.text = snapshot.child("height").value as String
-                height = geth!!.text.toString().toDouble()
                 sg!!.text = snapshot.child("stepgoal").value as String
+                sg2!!.text = snapshot.child("stepgoal").value as String
+                height = geth!!.text.toString().toDouble()
                 stepgoal =  getsg!!.text.toString().toInt()
             }
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -100,9 +104,8 @@ class StepsFragment : Fragment(), SensorEventListener {
         super.onResume()
         running = true
         var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-
         if (stepsSensor == null) {
-            //Toast.makeText(this, "No Step Counter Sensor !", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "No Step Counter Sensor !", Toast.LENGTH_SHORT).show()
         } else {
             sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
         }
@@ -118,22 +121,26 @@ class StepsFragment : Fragment(), SensorEventListener {
         if (running){
             val res = resources
             val drawable = res.getDrawable(R.drawable.circular)
-
             mProgress!!.progress = 0   // Main Progress
             mProgress!!.progressDrawable = drawable
             Thread(Runnable {
-                if (pStatus <= stepgoal!!) {
                     handler.post {
                         pStatus = event.values[0].toInt()
+                        mProgress!!.max = stepgoal!!
                         mProgress!!.progress = pStatus
                         tv!!.setText("" + pStatus)
                         val distance = (height!!/convertinch)*0.414*pStatus.toString().toDouble()/12/5280*convertkm
                         val caloriesburn = distance*convertcal
+                        val time = pStatus.toString().toDouble()*0.000167
                         distancetv!!.setText(String.format("%.2f", distance) + "KM")
                         caloriestv!!.setText(String.format("%.0f", caloriesburn) + "KCAL")
 
+                        if (time < 1){
+
+                        }
+                        timetv!!.setText(String.format("%.2f", time) + "H")
+
                     }
-                }
             }).start()
         }
     }
