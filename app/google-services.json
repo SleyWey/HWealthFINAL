@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "932705991166",
+    "firebase_url": "https://hwealth-cafc9.firebaseio.com",
+    "project_id": "hwealth-cafc9",
+    "storage_bucket": "hwealth-cafc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932705991166:android:6ea0c6f94dff1450f368af",
+        "android_client_info": {
+          "package_name": "com.example.hwealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932705991166-md8kubkpr7cbfaqaq4cshchnalfjblmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hwealth",
+            "certificate_hash": "b5061ab2191e43584a0c2c40abb3dc52c034242e"
+          }
+        },
+        {
+          "client_id": "932705991166-qui53f1vjd87nggk56p4jv5o9n5m7akb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAARmKjIMkseyxtIof1qJ3EE2jtnulhMm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932705991166-qui53f1vjd87nggk56p4jv5o9n5m7akb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

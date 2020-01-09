@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">HWealth</string>
+    <string name="s1">Your</string>
+    <string name="s2">HEALTH</string>
+    <string name="s3">is your</string>
+    <string name="s4">WEALTH</string>
+    <string name="s5">.</string>
+    <string name="b2">I HAVE AN ACCOUNT</string>
+    <string name="b1">SIGN UP</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="s6">Register</string>
+    <string name="b3">GET STARTED</string>
+    <string name="s7">Welcome</string>
+    <string name="s8">Back</string>
+    <string name="h1">Email Address</string>
+    <string name="h2">Password</string>
+    <string name="b4">LOG IN</string>
+    <string name="h3">Name</string>
+    <string name="b5">Add a photo</string>
+    <string name="title_bmic">BMI Calculator</string>
+    <string name="title_steps">Steps</string>
+    <string name="title_profile">Profile</string>
+    <string name="s9">BMI.C</string>
+    <string name="s10">STEPS</string>
+    <string name="s11">PROFILE</string>
+    <string name="s12">Name</string>
+    <string name="s13">Birthday</string>
+    <string name="s14">Gender</string>
+    <string name="b6">LOG OUT</string>
+    <string name="s15">Forgotten Password ?</string>
+    <string name="s16">Forgotten</string>
+    <string name="s17">Password ?</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_activity_testing">Testing</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="s18">Please enter your email address to reset your password</string>
+    <string name="b7">RESET PASSWORD</string>
+    <string name="s19">Forgotten</string>
+    <string name="s20">Height</string>
+    <string name="s21">cm</string>
+    <string name="s22">Weight</string>
+    <string name="s23">kg</string>
+    <string name="s24">Your category:</string>
+    <string name="s25">Underweight</string>
+    <string name="s26">Normal</string>
+    <string name="s27">Overweight</string>
+    <string name="s28">Obese</string>
+    <string name="s29">30.0 and above</string>
+    <string name="s30">25.0 - 29.9</string>
+    <string name="s31">18.5 - 24.9</string>
+    <string name="s32">Below 18.5</string>
+    <string name="s33">BMI:</string>
+    <string name="s34">Steps Goal</string>
+
+
+    <string-array name="numbers">
+        <item>5000</item>
+        <item>6000</item>
+        <item>7000</item>
+        <item>8000</item>
+        <item>9000</item>
+        <item>10000</item>
+        <item>20000</item>
+        <item>30000</item>
+        <item>40000</item>
+        <item>50000</item>
+    </string-array>
+</resources>

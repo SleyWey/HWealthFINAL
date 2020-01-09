@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c1"
+    tools:context=".ui.SignIn">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="231dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/alegreya_sans_bold"
+        android:text="@string/s7"
+        android:textColor="@color/c2"
+        android:textSize="@dimen/tx1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="122dp"
+        android:layout_height="75dp"
+        android:fontFamily="@font/alegreya_sans_bold"
+        android:text="@string/s8"
+        android:textColor="@color/c3"
+        android:textSize="@dimen/tx1"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="@dimen/d1"
+        android:layout_height="@dimen/d2"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:fontFamily="@font/alegreya_sans"
+        android:hint="@string/h1"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="@dimen/d1"
+        android:layout_height="@dimen/d2"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:fontFamily="@font/alegreya_sans"
+        android:hint="@string/h2"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="@dimen/d1"
+        android:layout_height="@dimen/d3"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="100dp"
+        android:background="@color/c2"
+        android:fontFamily="@font/alegreya_sans_bold"
+        android:text="@string/b4"
+        android:textColor="@color/c1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alegreya_sans"
+        android:text="@string/s15"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
