@@ -1,16 +1,28 @@
 package com.example.hwealth.ui.ui.steps
 
+import android.app.Notification
+import android.app.Notification.EXTRA_NOTIFICATION_ID
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.hwealth.R
@@ -37,7 +49,7 @@ class StepsFragment : Fragment(), SensorEventListener {
     private var timetv: TextView? = null
     private var sg: TextView? = null
     private var sg2: TextView? = null
-    private var h:TextView? = null
+    private var h: TextView? = null
     private var geth: EditText? = null
     private var getsg: EditText? = null
 
@@ -53,6 +65,12 @@ class StepsFragment : Fragment(), SensorEventListener {
     private val convertinch = 2.54
     private var height: Double? = null
     private var stepgoal: Int? = null
+
+    private var notificationManager: NotificationManager? = null
+    private var notificationChannel : NotificationChannel? = null
+    private var builder: Notification.Builder? = null
+    private val channelId = "com.example.hwealth"
+    private val description = "Test notification"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,8 +112,9 @@ class StepsFragment : Fragment(), SensorEventListener {
                 sg!!.text = snapshot.child("stepgoal").value as String
                 sg2!!.text = snapshot.child("stepgoal").value as String
                 height = geth!!.text.toString().toDouble()
-                stepgoal =  getsg!!.text.toString().toInt()
+                stepgoal = getsg!!.text.toString().toInt()
             }
+
             override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
@@ -118,29 +137,30 @@ class StepsFragment : Fragment(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        if (running){
+        if (running) {
             val res = resources
             val drawable = res.getDrawable(R.drawable.circular)
             mProgress!!.progress = 0   // Main Progress
             mProgress!!.progressDrawable = drawable
             Thread(Runnable {
-                    handler.post {
-                        pStatus = event.values[0].toInt()
-                        mProgress!!.max = stepgoal!!
-                        mProgress!!.progress = pStatus
-                        tv!!.setText("" + pStatus)
-                        val distance = (height!!/convertinch)*0.414*pStatus.toString().toDouble()/12/5280*convertkm
-                        val caloriesburn = distance*convertcal
-                        val time = pStatus.toString().toDouble()*0.000167
-                        distancetv!!.setText(String.format("%.2f", distance) + "KM")
-                        caloriestv!!.setText(String.format("%.0f", caloriesburn) + "KCAL")
-
-                        if (time < 1){
-
-                        }
-                        timetv!!.setText(String.format("%.2f", time) + "H")
-
+                handler.post {
+                    pStatus = event.values[0].toInt()
+                    mProgress!!.max = stepgoal!!
+                    mProgress!!.progress = pStatus
+                    tv!!.setText("" + pStatus)
+                    val distance =
+                        (height!! / convertinch) * 0.414 * pStatus.toString().toDouble() / 12 / 5280 * convertkm
+                    val caloriesburn = distance * convertcal
+                    var time = pStatus.toString().toDouble() * 0.000167
+                    distancetv!!.setText(String.format("%.2f", distance) + "KM")
+                    caloriestv!!.setText(String.format("%.0f", caloriesburn) + "KCAL")
+                    timetv!!.setText(String.format("%.2f", time) + "H")
+                    if (time < 1) {
+                        time = pStatus.toString().toDouble() * 0.01
+                        timetv!!.setText(String.format("%.0f", time) + "M")
                     }
+                }
+
             }).start()
         }
     }
@@ -148,5 +168,24 @@ class StepsFragment : Fragment(), SensorEventListener {
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
 
 
+   /*@RequiresApi(Build.VERSION_CODES.O)
+   fun addNotification() {
+       val initent = Intent(activity, StepsFragment::class.java)
+       val pendingIntent = PendingIntent.getActivity(activity, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+       notificationManager = getSystemService(Context.NOTIFICATION_SERVICE)
+       notificationChannel = NotificationChannel(channelId , description, NotificationManager.IMPORTANCE_HIGH)
+       notificationChannel!!.enableLights(true)
+       notificationChannel!!.lightColor = Color.GREEN
+       notificationChannel!!.enableVibration(false)
 
+       val builder = NotificationCompat.Builder(activity!!, channelId)
+           .setContentTitle("My notification")
+           .setContentText("Hello World!")
+           .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+           .setContentIntent(pendingIntent)
+           .setAutoCancel(true)
+
+       notificationManager!!.notify(1234, builder.build())
+
+   }*/
 }

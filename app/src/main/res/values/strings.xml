@@ -19,9 +19,9 @@
     <string name="b4">LOG IN</string>
     <string name="h3">Name</string>
     <string name="b5">Add a photo</string>
-    <string name="title_bmic">BMI Calculator</string>
-    <string name="title_steps">Steps</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_bmic1">BMI Calculator</string>
+    <string name="title_steps2">Steps</string>
+    <string name="title_profile3">Profile</string>
     <string name="s9">BMI.C</string>
     <string name="s10">STEPS</string>
     <string name="s11">PROFILE</string>
@@ -34,9 +34,9 @@
     <string name="s17">Password ?</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="title_activity_testing">Testing</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_steps">STEPS</string>
+    <string name="title_profile">PROFILE</string>
+    <string name="title_bmic">BMI.C</string>
     <string name="s18">Please enter your email address to reset your password</string>
     <string name="b7">RESET PASSWORD</string>
     <string name="s19">Forgotten</string>
@@ -44,7 +44,7 @@
     <string name="s21">cm</string>
     <string name="s22">Weight</string>
     <string name="s23">kg</string>
-    <string name="s24">Your category:</string>
+    <string name="s24">Your Category:</string>
     <string name="s25">Underweight</string>
     <string name="s26">Normal</string>
     <string name="s27">Overweight</string>

@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.hwealth.ui.ui.steps.StepsFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_steps2"
         tools:layout="@layout/fragment_steps" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.hwealth.ui.ui.bmicalculator.BMICFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_bmic1"
         tools:layout="@layout/fragment_bmic" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.hwealth.ui.ui.profile.ProfileFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_profile3"
         tools:layout="@layout/fragment_profile" />
 </navigation>

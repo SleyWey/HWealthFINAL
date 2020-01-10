@@ -72,7 +72,7 @@ class SignIn : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val intent = Intent(this@SignIn, Testing::class.java)
+        val intent = Intent(this@SignIn, BottomNavigation::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

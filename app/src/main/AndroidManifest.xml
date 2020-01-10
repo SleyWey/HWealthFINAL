@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".HeightandWeight"></activity>
         <activity
-            android:name=".ui.Testing"
+            android:name=".ui.BottomNavigation"
             android:label="@string/title_activity_testing" />
         <activity android:name=".ui.Steps" />
         <activity android:name=".ui.ForgotPassword" />

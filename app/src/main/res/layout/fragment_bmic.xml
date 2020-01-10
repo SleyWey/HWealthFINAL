@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c1">
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/alegreya_sans"
         android:text="@string/s20"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +42,9 @@ android:layout_height="match_parent">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/alegreya_sans"
         android:text="@string/s22"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextHeight" />
@@ -52,41 +64,61 @@ android:layout_height="match_parent">
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/alegreya_sans"
         android:text="@string/s21"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/editTextHeight"
         app:layout_constraintEnd_toEndOf="@+id/editTextHeight"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="@+id/editTextHeight"
-        app:layout_constraintTop_toTopOf="@+id/editTextHeight"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintTop_toTopOf="@+id/editTextHeight" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/s23"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/editTextWeight"
         app:layout_constraintEnd_toEndOf="@+id/editTextWeight"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="@+id/editTextWeight"
-        app:layout_constraintTop_toTopOf="@+id/editTextWeight"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintTop_toTopOf="@+id/editTextWeight" />
+
+    <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/alegreya_sans"
+            android:text="@string/s33"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/alegreya_sans"
         android:text="@string/s24"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
-    <TextView
-        android:id="@+id/categorytextResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toTopOf="@+id/textView23" />
+        <TextView
+            android:id="@+id/categorytextResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView23"
+            app:layout_constraintStart_toEndOf="@+id/textView23"
+            app:layout_constraintTop_toTopOf="@+id/textView23" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -122,105 +154,114 @@ android:layout_height="match_parent">
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView25"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/s25"
-        android:textColor="@color/c4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s25"
+            android:textColor="@color/c4"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/frameLayout"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:text="@string/s26"
-        android:textColor="@color/c5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s26"
+            android:textColor="@color/c5"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView25"
+            app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:text="@string/s28"
-        android:textColor="@color/c7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s28"
+            android:textColor="@color/c7"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/textView27"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:text="@string/s27"
-        android:textColor="@color/c6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s27"
+            android:textColor="@color/c6"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView26"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
-    <TextView
-        android:id="@+id/textView32"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="@string/s29"
-        android:textAlignment="textEnd"
-        android:textColor="@color/c7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toTopOf="@+id/textView28"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s29"
+            android:textAlignment="textEnd"
+            android:textColor="@color/c7"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView28"
+            app:layout_constraintTop_toTopOf="@+id/textView28"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="@string/s31"
-        android:textAlignment="textEnd"
-        android:textColor="@color/c5"
-        app:layout_constraintStart_toEndOf="@+id/textView26"
-        app:layout_constraintTop_toTopOf="@+id/textView26" />
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s31"
+            android:textAlignment="textEnd"
+            android:textColor="@color/c5"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView26"
+            app:layout_constraintTop_toTopOf="@+id/textView26" />
 
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="@string/s32"
-        android:textAlignment="textEnd"
-        android:textColor="@color/c4"
-        app:layout_constraintStart_toEndOf="@+id/textView25"
-        app:layout_constraintTop_toTopOf="@+id/textView25" />
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s32"
+            android:textAlignment="textEnd"
+            android:textColor="@color/c4"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView25"
+            app:layout_constraintTop_toTopOf="@+id/textView25" />
 
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="@string/s30"
-        android:textAlignment="textEnd"
-        android:textColor="@color/c6"
-        app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toTopOf="@+id/textView27" />
 
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/s33"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:text="@string/s30"
+            android:textAlignment="textEnd"
+            android:textColor="@color/c6"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView27"
+            app:layout_constraintTop_toTopOf="@+id/textView27" />
 
-    <TextView
-        android:id="@+id/bmiResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/textView33"
-        app:layout_constraintTop_toTopOf="@+id/textView33" />
+        <TextView
+            android:id="@+id/bmiResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/alegreya_sans_bold"
+            android:textColor="@color/c2"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView33"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toTopOf="@+id/textView33" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

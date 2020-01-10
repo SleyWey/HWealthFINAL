@@ -215,14 +215,23 @@ class ProfileFragment : Fragment() {
                 g!!.text = snapshot.child("gender").value as String
                 b!!.text = snapshot.child("birthday").value as String
                 sg!!.text = snapshot.child("stepgoal").value as String
-                Picasso
-                    .get()
-                    .load(propic)
-                    .fit()
-                    .centerCrop()
-                    .into(profilepicture)
 
-                 selectphotobtn!!.alpha = 0f
+                if (propic == "https://firebasestorage.googleapis.com/v0/b/hwealth-cafc9.appspot.com/o/images%2FOYQpnX.png?alt=media&token=300d9cad-e92c-4f42-9d86-8019fa8bddf9") {
+                    Picasso
+                        .get()
+                        .load(propic)
+                        .fit()
+                        .centerCrop()
+                        .into(profilepicture)
+                } else {
+                    Picasso
+                        .get()
+                        .load(propic)
+                        .fit()
+                        .centerCrop()
+                        .into(profilepicture)
+                    selectphotobtn!!.alpha = 0f
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {}

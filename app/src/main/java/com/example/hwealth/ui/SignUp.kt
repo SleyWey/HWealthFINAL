@@ -108,14 +108,10 @@ class SignUp : AppCompatActivity() {
         mUser!!.sendEmailVerification()
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this@SignUp,
-                        "Verification email sent to " + mUser.email,
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignUp, "Verification email sent to " + mUser.email, Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e(TAG, "sendEmailVerification", task.exception)
-                    Toast.makeText(this@SignUp,
-                        "Failed to send verification email.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignUp, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
